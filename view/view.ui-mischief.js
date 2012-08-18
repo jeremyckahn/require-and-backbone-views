@@ -18,22 +18,26 @@ define(['exports'], function (UIMischief) {
 
 
   /**
-   * This is a trivial example of a private function.  It is only accessible by
-   * the code within this Require.js module.
-   * @param {string} str The string to log to the console.
-   */
-  function log (str) {
-    console.log(str);
-  }
-
-
-  /**
    * Prepares button elements for size modification.
    * @param {UIMischiefView} uiMischief An instance of UIMischief.view.
    */
   function initButtons (uiMischief) {
     uiMischief._$growBtn.data('scale', 1);
     uiMischief._$shrinkBtn.data('scale', 1);
+  }
+
+
+  /**
+   * Changes an element's scale based on it's current `scale` data and
+   * specified delta.
+   * @param {jQuery} $el
+   * @param {number} delta A positive or negative value.
+   */
+  function changeElScale ($el, delta) {
+    var currentScale = $el.data('scale');
+    var newScale = currentScale += delta;
+    $el.css('transform', 'scale(' + newScale + ')');
+    $el.data('scale', newScale);
   }
 
 
@@ -64,10 +68,10 @@ define(['exports'], function (UIMischief) {
       // and is not part of the public API.
 
       /** @type {jQuery) */
-      this._$growBtn = this.$el.find('button.hello');
+      this._$growBtn = this.$el.find('button.grow');
 
       /** @type {jQuery) */
-      this._$shrinkBtn = this.$el.find('button.goodbye');
+      this._$shrinkBtn = this.$el.find('button.shrink');
 
       initButtons(this);
     }
@@ -85,7 +89,7 @@ define(['exports'], function (UIMischief) {
      * @param {jQuery.Event} evt
      */
     ,'onClickGrowButton': function (evt) {
-      log('Growing!');
+      changeElScale(this._$growBtn, .2);
     }
 
 
@@ -93,7 +97,7 @@ define(['exports'], function (UIMischief) {
      * @param {jQuery.Event} evt
      */
     ,'onClickShrinkButton': function (evt) {
-      log('Shrinking!');
+      changeElScale(this._$shrinkBtn, -.2);
     }
 
   });
