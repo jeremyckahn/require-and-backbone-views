@@ -11,6 +11,15 @@ require([
     ], function (UIMischief) {
 
   var $uiMischief = $('.ui-mischief');
-  var uiMischief = new UIMischief.view({ '$el': $uiMischief});
+  var uiMischiefs = [];
+
+  // It's generally easier to have a Backbone View representing a single DOM
+  // element, not many.  Iterate through the jQuery collection and instantiate
+  // a new View instance for each one.
+  $uiMischief.each(function (i, el) {
+    uiMischiefs.push(new UIMischief.view( { '$el': $(el) } ));
+  });
+
+  console.log(uiMischiefs);
 
 });
