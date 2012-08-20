@@ -53,6 +53,7 @@ define(['exports'], function (UIMischief) {
      * @param {Object} opts
      *   @param {jQuery} $el This View assumes that $el is passed to the
      *       constuctor.
+     * @constructor
      */
     ,'initialize': function (opts) {
       // This call to `extend` is a useful peice of init-time boilerplate.  It
