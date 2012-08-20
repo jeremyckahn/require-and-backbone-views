@@ -17,7 +17,7 @@ require([
   // element, not many.  Iterate through the jQuery collection and instantiate
   // a new View instance for each one.
   $uiMischief.each(function (i, el) {
-    uiMischiefs.push(new UIMischief.view( { '$el': $(el) } ));
+    uiMischiefs.push(new UIMischief.View( { '$el': $(el) } ));
   });
 
   console.log(uiMischiefs);

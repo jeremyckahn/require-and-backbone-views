@@ -41,7 +41,7 @@ define(['exports'], function (UIMischief) {
   }
 
 
-  UIMischief.view = Backbone.View.extend({
+  UIMischief.View = Backbone.View.extend({
 
     'events': {
       'click button.grow': 'onClickGrowButton'
